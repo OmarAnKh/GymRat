@@ -6,6 +6,8 @@ from infrastructure import HuggingFaceGenerator
 from application import load_and_prepare_dataset
 from application import RAGChatbot
 from fastapi.responses import JSONResponse
+import uvicorn
+
 
 embedder = SentenceTransformerEmbeddingService()
 retriever = ChromaDBRetriever()
@@ -39,3 +41,5 @@ async def create_chat(query: Query):
         return JSONResponse(status_code=200, content={"Answer": chatbot.chat(query.question)})
     except Exception as e:
         return JSONResponse(status_code=500, content={"Error": str(e)})
+
+uvicorn.run(app, host="0.0.0.0", port=8000)
