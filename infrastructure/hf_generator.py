@@ -3,6 +3,7 @@ import torch
 from domain import IGenerator
 
 class HuggingFaceGenerator(IGenerator):
+
     def __init__(self, model_id: str = "deepseek-ai/deepseek-llm-7b-chat"):
         bnb_config = BitsAndBytesConfig(
             load_in_4bit=True,

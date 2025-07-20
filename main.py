@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from infrastructure import SentenceTransformerEmbeddingService
 from infrastructure import ChromaDBRetriever
-from infrastructure import HuggingFaceGenerator
+from infrastructure import HuggingFaceGenerator,MistralGenerator
 from application import load_and_prepare_dataset
 from application import RAGChatbot
 from fastapi.responses import JSONResponse
@@ -11,7 +11,7 @@ import uvicorn
 
 embedder = SentenceTransformerEmbeddingService()
 retriever = ChromaDBRetriever()
-generator = HuggingFaceGenerator()
+generator = MistralGenerator()
 
 dataset = load_and_prepare_dataset()
 
